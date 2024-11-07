@@ -6,7 +6,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Setup a configuration for the AWS .NET SDK.
 var awsConfig = builder.AddAWSSDKConfig()
     .WithProfile("default")
-    .WithRegion(RegionEndpoint.EUWest1);
+    .WithRegion(RegionEndpoint.USWest2);
 
 var stack = builder.AddAWSCDKStack("stack", "Aspire-stack").WithReference(awsConfig);
 var customStack = builder.AddAWSCDKStack("custom", scope => new CustomStack(scope, "Aspire-custom"));
