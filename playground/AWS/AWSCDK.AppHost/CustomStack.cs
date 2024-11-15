@@ -17,7 +17,7 @@ public class CustomStack : Stack
     public CustomStack(Construct scope, string id)
         : base(scope, id)
     {
-        Bucket = new Bucket(this, "Bucket");
+        Bucket = new Bucket(this, "Bucket", new BucketProps { RemovalPolicy = RemovalPolicy.DESTROY, AutoDeleteObjects = true });
         Queue = new Queue(this, "Queue");
     }
 

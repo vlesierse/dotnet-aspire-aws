@@ -24,4 +24,21 @@ internal static class ResourceExtensions
         stackArtifact = annotations.First().StackArtifact;
         return true;
     }
+
+    /// <summary>
+    /// Resolves a <see cref="AssetManifestArtifact"/> from a resource.
+    /// </summary>
+    /// <param name="resource"></param>
+    /// <param name="assetsArtifact"></param>
+    /// <returns>False when no <see cref="CloudAssemblyResourceAnnotation"/> is not found as annotation of the resource.</returns>
+    public static bool TryGetAssetsArtifact(this IStackResource resource, [NotNullWhen(true)] out AssetManifestArtifact? assetsArtifact)
+    {
+        assetsArtifact = default;
+        if (!resource.TryGetAnnotationsOfType<CloudAssemblyResourceAnnotation>(out var annotations))
+        {
+            return false;
+        }
+        assetsArtifact = annotations.First().AssetsArtifact;
+        return assetsArtifact != null;
+    }
 }
